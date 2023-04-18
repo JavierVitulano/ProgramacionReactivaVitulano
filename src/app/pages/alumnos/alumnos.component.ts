@@ -126,6 +126,7 @@ export class AlumnosComponent implements AfterViewInit {
         ];
       }
     });
+
   }
   nuevoArray: alumnos[] = [];
   eliminar(ev: Event): void {

@@ -6,6 +6,7 @@ import { dashboardComponent } from './dashboard.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { AlumnosModule } from '../pages/alumnos/alumnos.module';
+import { LoginModule } from '../pages/login/login.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AlumnosModule } from '../pages/alumnos/alumnos.module';
     MatButtonModule,
     MatSidenavModule,
     AlumnosModule,
+    LoginModule
   ],
   exports : [
     dashboardComponent

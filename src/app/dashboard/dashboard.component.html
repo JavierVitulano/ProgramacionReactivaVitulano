@@ -23,9 +23,14 @@
         <mat-icon>menu</mat-icon>
       </button>
       <span>Cursos online</span>
+      <span class="example-spacer"></span>
+      <span class="usuario-log">{{ authUser?.nombre }}</span>
     </mat-toolbar>
     <main class="contenido">
-      <app-alumnos></app-alumnos>
+
+       <app-login></app-login>
+       <!-- <app-alumnos></app-alumnos>  -->
+      
     </main>
   </div>
 </mat-drawer-container>

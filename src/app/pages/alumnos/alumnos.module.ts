@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ServicesModule } from 'src/app/services/services.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatDialogModule,
     ReactiveFormsModule,
+    ServicesModule
   ],
   exports: [AlumnosComponent]
 })
