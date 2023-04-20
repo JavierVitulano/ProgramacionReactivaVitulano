@@ -1,18 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subject, fromEvent,map } from 'rxjs';
+import { Observable, Subject, fromEvent, map, Subscription } from 'rxjs';
 import { Usuario } from 'src/app/interfaces/Usuario';
 import { AuthService } from 'src/app/services/AuthService';
+import { Time,TimeService } from 'src/app/services/time.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit,OnDestroy {
   hide = true;
   isLoggedIn = new Subject<Usuario>();
+  horaActual : Time | null = null;
 
+  //horaActual$: Observable<Time>;
+  subscriptionRef : Subscription | null;
   contrasenaControl = new FormControl('', [
     Validators.required,
     Validators.minLength(8),
@@ -29,7 +33,10 @@ export class LoginComponent implements OnInit {
     nombre: this.nombreControl,
   });
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+              private timeService: TimeService) {
+                this.subscriptionRef = this.timeService.reloj.subscribe((valor) => this.horaActual = valor);
+  }
 
   async ngOnInit(): Promise<void> {
     const clicks = fromEvent<PointerEvent>(document, 'click');
@@ -59,7 +66,7 @@ export class LoginComponent implements OnInit {
     );
   }
   ngOnDestroy(): void {
-    // this.suscripcionAuthUser?.unsubscribe();
     this.isLoggedIn.complete();
+    this.subscriptionRef?.unsubscribe();
   }
 }
